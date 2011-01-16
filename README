@@ -1,0 +1,11 @@
+jQuery LightTip 1.0
+Copyright 2010 Jonathan Wilsson
+http://www.jonathanwilsson.com/projects/jquery-lighttip/
+
+Requires at least jQuery 1.4.4.
+
+LightTip is a jQuery plugin which allows you to create simple little tooltips on any element.
+
+Look at the demo here: http://www.jonathanwilsson.com/projects/jquery-lighttip/
+
+If you have any questions or thoughts feel free to contact me.

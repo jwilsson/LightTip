@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>jQuery LightTip</title>
+<link rel="stylesheet" type="text/css" href="jquery-lighttip.css"></head>
+<body>
+
+    <div id="content">
+
+        <h1>jQuery LightTip</h1>
+
+            <p>
+                LightTip is a jQuery plugin which allows you to create simple little tooltips on any element.
+                Hover over the link below to see an example.
+            </p>
+
+            <p>
+                <a href="#" title="You hovered over me" id="example">Hover over me!</a>
+            </p>
+
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	<script src="jquery.lighttip.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('#example').LightTip();
+		});
+	</script>
+
+</body>
+
+</html>
