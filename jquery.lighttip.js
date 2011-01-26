@@ -1,6 +1,6 @@
 /**
- * jQuery LightTip 1.0
- * http://www.jonathanwilsson.com/projects/lighttip/
+ * jQuery LightTip 1.0.1
+ * http://jonathanwilsson.com/projects/lighttip/
  *
  * Copyright 2010 Jonathan Wilsson
  *
@@ -9,51 +9,51 @@
  */
 
 (function ($) {
-	var LightTip = function (elem) {
-		// Only create one tooltip div
-		if ($('.tooltip').length <= 0) {
-			$('body').append('<div class="tooltip"></div>');
-		}
 
-		var $elem = $(elem), $tooltip = $('.tooltip');
+	$.fn.LightTip = function (elem) {
 
-		$tooltip.hide();
-
-		// Add the tooltip when the user hovers over the specified element
-		$elem.hover(function () {
-			var $this = $(this), title = $this.attr('title');
-
-			// Clear the title attribute temporarily
-			$this.data('orgTitle', title);
-			$this.attr('title', '');
-
-			// Show the tooltip
-			$tooltip.html(title);
-			$tooltip.show();
-		}, function () {
-			var $this = $(this);
-			// Restore the title attribute's value
-			$this.attr('title', $this.data('orgTitle'));
-
-			// Hide the tooltip
-			$tooltip.html('');
-			$tooltip.hide();
-		});
-
-		// Make the tooltip follow the mouse
-		$elem.bind('mousemove', function (e) {
-			$tooltip.css({
-				'left': e.pageX + 10,
-				'position': 'absolute',
-				'top': e.pageY + 10
-			});
-		});
-	};
-
-	$.fn.LightTip = function () {
 		return this.each(function () {
-			new LightTip(this);
+			// Only create one tooltip div
+			if ($('.tooltip').length <= 0) {
+				$('body').append('<div class="tooltip"></div>');
+			}
+
+			var $this = $(this), $tooltip = $('.tooltip');
+
+			$tooltip.hide();
+
+			// Add the tooltip when the user hovers over the specified element
+			$this.hover(function () {
+				var $elem = $(this), title = $this.attr('title');
+
+				// Clear the title attribute temporarily
+				$elem.data('orgTitle', title);
+				$elem.attr('title', '');
+
+				// Show the tooltip
+				$tooltip.html(title);
+				$tooltip.show();
+			}, function () {
+				var $elem = $(this);
+				// Restore the title attribute's value
+				$elem.attr('title', $elem.data('orgTitle'));
+
+				// Hide the tooltip
+				$tooltip.html('');
+				$tooltip.hide();
+			});
+
+			// Make the tooltip follow the mouse
+			$this.bind('mousemove', function (e) {
+				$tooltip.css({
+					'left': e.pageX + 10,
+					'position': 'absolute',
+					'top': e.pageY + 10
+				});
+			});
+
 		});
+
 	};
 
 }(jQuery));
