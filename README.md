@@ -4,7 +4,7 @@ LightTip is a jQuery plugin which allows you to create simple little tooltips on
 http://jonathanwilsson.com/projects/jquery-lighttip/
 
 ## Features
-* Tiny, 473 bytes minified and gzipped.
+* Tiny, 418 bytes minified and gzipped.
 * Lock the position of the tooltip or let it follow the mouse.
 * Animated display of the toolip
 
