@@ -18,9 +18,8 @@ body {
     width:300px;
 }
 
-.tooltip {
+.lighttip {
     background:#000;
-    -moz-border-radius:5px;
     border-radius:5px;
     color:#fff;
     filter:alpha(opacity=70);

@@ -1,5 +1,5 @@
 /**
- * jQuery LightTip 1.0.3
+ * jQuery LightTip 1.0.4
  * http://jonathanwilsson.com/projects/lighttip/
  *
  * Copyright 2011 Jonathan Wilsson
@@ -13,7 +13,9 @@
     $.fn.LightTip = function (options) {
 	var defaults = {
 	    animate: true,
-	    lockPosition: false  
+	    easing: "swing",
+	    lockPosition: false,
+	    speed: 400
 	};
 	
 	if (options) {
@@ -22,14 +24,14 @@
 	
         return this.each(function () {
             // Only create one tooltip div
-            if ($(".tooltip").length <= 0) {
-                $("body").append('<div class="tooltip"></div>');
+            if ($(".lighttip").length <= 0) {
+                $("body").append('<div class="lighttip"></div>');
             }
-
-            var $this = $(this),
-		$tooltip = $(".tooltip");
-
-            $tooltip.hide();
+	    
+	    var $this = $(this),
+		$lighttip = $(".lighttip");
+	    
+            $lighttip.hide();
 
             // Add the tooltip when the user hovers over the specified element
             $this.bind("mouseover", function (e) {
@@ -39,7 +41,7 @@
                 $(this).data("orgTitle", title).attr("title", "");
 
                 // Show the tooltip
-                $tooltip.html(title)
+                $lighttip.html(title)
 			.css({
 			    left: e.pageX ,
 			    position: "absolute",
@@ -47,13 +49,11 @@
 			});
 		
 		if (defaults.animate) {
-		    $tooltip.animate({opacity: "show", height: "show"});
+		    $lighttip.animate({opacity: "show"}, defaults.speed, defaults.easing);
 		} else {
-		    $tooltip.show();
+		    $lighttip.show();
 		}
-	    });
-	    
-            $this.bind("mouseout", function () {
+	    }).bind("mouseout", function () {
                 var $elem = $(this);
 		
                 // Restore the title attribute's value
@@ -61,18 +61,18 @@
 
                 // Hide the tooltip
 		if (defaults.animate) {
-		    $tooltip.animate({opacity: "hide", height: "hide"}, 400, function () {
+		    $lighttip.animate({opacity: "hide"}, defaults.speed, defaults.easing, function () {
 			$(this).html(""); // Called here to prevent the content from being emptied prematurely
 		    });
 		} else {
-		    $tooltip.hide().html("");
+		    $lighttip.hide().html("");
 		}		
             });
 
             // Make the tooltip follow the mouse
 	    if (!defaults.lockPosition) {
 		$this.bind("mousemove", function (e) {
-		    $tooltip.css({
+		    $lighttip.css({
 			left: e.pageX + 10,
 			position: "absolute",
 			top: e.pageY + 10
