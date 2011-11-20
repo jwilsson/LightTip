@@ -1,8 +1,11 @@
-// jQuery LightTip 1.0.6 | Copyright 2011 Jonathan Wilsson
+// jQuery LightTip 1.0.7 | Copyright 2011 Jonathan Wilsson
 (function ($) {
 	$.fn.LightTip = function (options) {
 		var defaults = {
 			animate: true,
+			attribute: "title",
+			delayIn: 0,
+			delayOut: 0,
 			lockPosition: false,
 			offset: 10,
 			speed: 400
@@ -18,28 +21,29 @@
 
 			// Add the tooltip when the user hovers over the specified element
 			$this.bind("mouseover", function (e) {
-				var title = $this.attr("title");
+				var text = $this.attr(defaults.attribute);
 
 				$("body").append('<div class="lighttip"></div>');
 
 				$lighttip = $(".lighttip").hide();
 
 				// Clear the title attribute temporarily
-				$(this).data("orgTitle", title).attr("title", "");
+				$this.data("orgTitle", $this.attr("title")).attr("title", "");
 
-				// Show the tooltip
-				$lighttip.html(title)
-					.css({
-					    left: e.pageX + defaults.offset,
-					    position: "absolute",
-					    top: e.pageY + defaults.offset
+				setTimeout(function () {
+					// Show the tooltip
+					$lighttip.html(text).css({
+						left: e.pageX + defaults.offset,
+						position: "absolute",
+						top: e.pageY + defaults.offset
 					});
 
-				if (defaults.animate) {
-					$lighttip.stop().animate({opacity: "show"}, defaults.speed);
-				} else {
-					$lighttip.show();
-				}
+					if (defaults.animate) {
+						$lighttip.stop().animate({opacity: "show"}, defaults.speed);
+					} else {
+						$lighttip.show();
+					}
+				}, defaults.delayIn);
 			}).bind("mouseout", function () {
 				var $elem = $(this);
 
@@ -55,7 +59,7 @@
 					} else {
 						$lighttip.hide().remove();
 					}
-				}, 100);
+				}, 100 + defaults.delayOut); // Fixes an issue where LightTip would be emptied when moving the mouse between elements
 			});
 
 			// Make the tooltip follow the mouse

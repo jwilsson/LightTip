@@ -1,45 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 
 <head>
-<meta charset="utf-8">
-<title>jQuery LightTip</title>
-<link rel="stylesheet" href="jquery-lighttip.css"></head>
+    <meta charset="utf-8">
+    <title>jQuery LightTip</title>
+    <link rel="stylesheet" href="jquery-lighttip.css">
+</head>
+
 <body>
 
     <div id="content">
 
         <h1>jQuery LightTip</h1>
 
-            <p>
-                LightTip is a jQuery plugin which allows you to create simple little tooltips on any element.
-                Hover over the links below to see examples.
-            </p>
+        <p>
+            LightTip is a tiny jQuery plugin for creating tooltips on any element. Hover over the links below to see examples.
+        </p>
 
-            <p>
-                <a href="#" title="You hovered over me" id="example">Hover over me!</a>
+        <a href="#" data-foo="You hovered over me" title="Howdy!" id="example">Hover over me!</a>
 		
-		<a href="#" title="You hovered over me too" id="example2">Hover over me too!</a>
-            </p>
+	<a href="#" title="You hovered over me too" id="example2">Hover over me too!</a>
 
     </div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-    <script src="jquery.lighttip.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="jquery.lighttip.min.js"></script>
     <script>
-	$(document).ready(function () {
-	    $("#example").LightTip({
-		animate: true,
-		lockPosition: false,
-		speed: 2000
-	    });
-	    
-	    $("#example2").LightTip({
-		animate: false,
-		lockPosition: true,
-		offset: 100
-	    });
+    $(document).ready(function () {
+	$("#example").LightTip({
+	    animate: true,
+	    attribute: "data-foo",
+	    lockPosition: false,
+	    speed: 2000
 	});
+	    
+	$("#example2").LightTip({
+	    animate: false,
+	    delayIn: 1000,
+	    delayOut: 1000,
+	    lockPosition: true,
+	    offset: 100
+	});
+    });
     </script>
 
 </body>
