@@ -1,16 +1,16 @@
-# jQuery LightTip 1.0.7
+# jQuery LightTip 1.0.8
 LightTip is a tiny jQuery plugin for creating tooltips on any element.
 
 http://jonathanwilsson.com/projects/jquery-lighttip/
 
 ## Features
 * Animated display of the toolip.
-* Choose with attribute to pull data from.
+* Choose which attribute to pull data from.
 * Control the distance between the mouse pointer and LightTip.
 * Delay the viewing and hiding of LightTip.
 * Lock the position of LightTip or let it follow the mouse.
 * Supports HTML content in LightTip.
-* Tiny, 494 bytes minified and gzipped.
+* Tiny, 543 bytes (< 1kB) minified and gzipped.
 
 ### Options
 * animate (Default true) boolean Whether to animate the display of LightTip.
@@ -18,15 +18,20 @@ http://jonathanwilsson.com/projects/jquery-lighttip/
 * delayIn (Default 0) int Number of miliseconds before LightTip is shown.
 * delayOut (Default 0) int Number of miliseconds before LightTip is hidden.
 * lockPosition (Default false) boolean Whether to lock the position of LightTip.
-* offset (Default 10) integer Offset from the mouse pointer.
+* offsetX (Default 10) integer X-offset from the mouse pointer.
+* offsetY (Default 10) integer Y-offset from the mouse pointer.
 * speed (Default 400) integer Animation time in milliseconds.
 
-Minimum required jQuery version is 1.3.
+Minimum required jQuery version is 1.3.0.
 
 ## License
 Free to use and abuse under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
 ## Changelog
+### 1.0.8
+* Replaced the "offset" option with the "offsetX" and "offsetY" options for better control of the offset.
+* Fixed various issues with emptied tooltips and missing animations when moving the mouse between elements.
+
 ### 1.0.7
 * Added the "attribute" option to control which element to pull the text from.
 * Added the "delayIn" and "delayOut" options to control any delay before showing or hiding LightTip.
@@ -61,4 +66,4 @@ Free to use and abuse under the [MIT license](http://www.opensource.org/licenses
 * Initial release.
 
 ## Copyright
-Copyright 2011 Jonathan Wilsson
+Copyright 2011 Jonathan Wilsson.

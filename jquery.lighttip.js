@@ -1,4 +1,4 @@
-// jQuery LightTip 1.0.7 | Copyright 2011 Jonathan Wilsson
+// jQuery LightTip 1.0.8 | Copyright 2011 Jonathan Wilsson
 (function ($) {
 	$.fn.LightTip = function (options) {
 		var defaults = {
@@ -7,35 +7,40 @@
 			delayIn: 0,
 			delayOut: 0,
 			lockPosition: false,
-			offset: 10,
+			offsetX: 10,
+			offsetY: 10,
 			speed: 400
 		};
-
+		
 		// If the user has supplied options let's merge them with the defaults
 		if (options) {
 			$.extend(defaults, options);
 		}
 
 		return this.each(function () {
-			var $this = $(this), $lighttip;
-
+			var $this = $(this), $lighttip, timer;
+			
+			// Fix for old "offset"-option
+			if (defaults.offset) {
+				defaults.offsetX = defaults.offsetY = defaults.offset;
+			}
+			
 			// Add the tooltip when the user hovers over the specified element
 			$this.bind("mouseover", function (e) {
-				var text = $this.attr(defaults.attribute);
-
-				$("body").append('<div class="lighttip"></div>');
-
-				$lighttip = $(".lighttip").hide();
-
+				var text = $this.attr(defaults.attribute), id = Math.ceil(Math.random() * 9998);
+				
+				// Set up the LightTip element
+				$lighttip = $("body").append('<div id="l-' + id + '" class="lighttip"></div>').find("#l-" + id).hide();
+				
 				// Clear the title attribute temporarily
 				$this.data("orgTitle", $this.attr("title")).attr("title", "");
 
 				setTimeout(function () {
 					// Show the tooltip
 					$lighttip.html(text).css({
-						left: e.pageX + defaults.offset,
+						left: e.pageX + defaults.offsetX,
 						position: "absolute",
-						top: e.pageY + defaults.offset
+						top: e.pageY + defaults.offsetY
 					});
 
 					if (defaults.animate) {
@@ -49,7 +54,7 @@
 
 				// Restore the title attribute's value
 				$elem.attr("title", $elem.data("orgTitle"));
-
+				
 				setTimeout(function () {
 					// Hide the tooltip
 					if (defaults.animate) {
@@ -59,16 +64,16 @@
 					} else {
 						$lighttip.hide().remove();
 					}
-				}, 100 + defaults.delayOut); // Fixes an issue where LightTip would be emptied when moving the mouse between elements
+				}, defaults.delayOut);
 			});
 
 			// Make the tooltip follow the mouse
 			if (!defaults.lockPosition) {
 				$this.bind("mousemove", function (e) {
 					$lighttip.css({
-						left: e.pageX + defaults.offset,
+						left: e.pageX + defaults.offsetX,
 						position: "absolute",
-						top: e.pageY + defaults.offset
+						top: e.pageY + defaults.offsetY
 					});
 				});
 			}
