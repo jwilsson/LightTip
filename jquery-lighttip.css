@@ -1,3 +1,8 @@
+/* Bare minimum styles */
+.lighttip {
+    position:absolute;
+}
+
 /* These styles are just examples. LightTip can be styled in any way you want */
 .lighttip {
     background:#000;
@@ -27,4 +32,8 @@ h1 {
 
 p {
     margin:10px 0;
+}
+
+#test-content {
+    margin:30px 0 10px;
 }

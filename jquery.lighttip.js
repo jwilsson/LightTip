@@ -1,14 +1,16 @@
-// jQuery LightTip 1.0.8 | Copyright 2011 Jonathan Wilsson
+// jQuery LightTip 1.1 | Copyright 2012 Jonathan Wilsson
 (function ($) {
 	$.fn.LightTip = function (options) {
 		var defaults = {
 			animate: true,
 			attribute: "title",
+			content: "",
 			delayIn: 0,
 			delayOut: 0,
 			lockPosition: false,
 			offsetX: 10,
 			offsetY: 10,
+			selector: "",
 			speed: 400
 		};
 		
@@ -20,14 +22,18 @@
 		return this.each(function () {
 			var $this = $(this), $lighttip, timer;
 			
-			// Fix for old "offset"-option
-			if (defaults.offset) {
-				defaults.offsetX = defaults.offsetY = defaults.offset;
-			}
-			
 			// Add the tooltip when the user hovers over the specified element
 			$this.bind("mouseover", function (e) {
 				var text = $this.attr(defaults.attribute), id = Math.ceil(Math.random() * 9998);
+				
+				// See which value to use for the text
+				if (defaults.selector) {
+					text = $(defaults.selector).html();
+				}
+				
+				if (defaults.content) {
+					text = defaults.content;
+				}
 				
 				// Set up the LightTip element
 				$lighttip = $("body").append('<div id="l-' + id + '" class="lighttip"></div>').find("#l-" + id).hide();
@@ -39,7 +45,6 @@
 					// Show the tooltip
 					$lighttip.html(text).css({
 						left: e.pageX + defaults.offsetX,
-						position: "absolute",
 						top: e.pageY + defaults.offsetY
 					});
 
@@ -72,7 +77,6 @@
 				$this.bind("mousemove", function (e) {
 					$lighttip.css({
 						left: e.pageX + defaults.offsetX,
-						position: "absolute",
 						top: e.pageY + defaults.offsetY
 					});
 				});
