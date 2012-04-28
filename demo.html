@@ -2,54 +2,65 @@
 <html lang="en-US">
 
 <head>
-    <meta charset="utf-8">
-    <title>jQuery LightTip</title>
-    <link rel="stylesheet" href="jquery-lighttip.css">
+	<meta charset="utf-8">
+	<title>jQuery LightTip</title>
+	<link rel="stylesheet" href="jquery-lighttip.css">
 </head>
 
 <body>
 
-    <div id="content">
+	<div id="content">
 
-        <h1>jQuery LightTip</h1>
+		<h1>jQuery LightTip</h1>
 
-        <p>
-            LightTip is a tiny jQuery plugin for creating tooltips on any element. Hover over the links below to see examples.
-        </p>
+		<p>
+			LightTip is a tiny jQuery plugin for creating tooltips on any element. Hover over the links or click the input below to see examples.
+		</p>
 
-        <a href="#" data-foo="You hovered over me" title="Howdy!" id="example">Hover over me!</a>
+		<a href="#" title="Howdy!" id="example">Hover over me!</a>
 		
-	<a href="#" title="You hovered over me too" id="example2">Hover over me too!</a>
-	
-	<p id="test-content">
-	    I'm just some content which will be displayed in the first tooltip.
-	</p>
-	
-    </div>
+		<a href="#" data-foo="You hovered over me" title="You hovered over me too" id="example2">Hover over me too!</a>
+			
+		<p>
+			Click the input! <br>
+			<input type="text" id="example3" value="Some text">
+		</p>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="jquery.lighttip.js"></script>
-    <script>
-    $(document).ready(function () {
-	$("#example").LightTip({
-	    animate: true,
-	    attribute: "data-foo",
-	    lockPosition: false,
-	    selector: "#test-content",
-	    speed: 2000
+		<p id="test-content">
+			I'm just some content which will be displayed in the first tooltip.
+		</p>
+	
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="jquery.lighttip.js"></script>
+	<script>
+	$(document).ready(function () {
+		$("#example").LightTip({
+			animate: true,
+			lockPosition: false,
+			selector: "#test-content",
+			speed: 2000
+		});
+
+		$("#example2").LightTip({
+			animate: false,
+			attribute: "data-foo",
+			delayIn: 1000,
+			delayOut: 1000,
+			lockPosition: true,
+			offsetX: -50,
+			offsetY: 100
+		});
+
+		$("#example3").LightTip({
+			content: "This is some text defined in JavaScript.",
+			offsetX: $("input").width() + 10,
+			offsetY: -3,
+			trigger: "focus"
+		});
 	});
-	    
-	$("#example2").LightTip({
-	    animate: false,
-	    content: "This text is defined in JavaScript",
-	    delayIn: 1000,
-	    delayOut: 1000,
-	    lockPosition: true,
-	    offsetX: -50,
-	    offsetY: 100
-	});
-    });
-    </script>
+	</script>
 
 </body>
 
