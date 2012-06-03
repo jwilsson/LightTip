@@ -1,4 +1,4 @@
-# jQuery LightTip 1.1.1
+# jQuery LightTip 1.1.2
 LightTip is a tiny jQuery plugin for creating tooltips on any element.
 
 http://jonathanwilsson.com/projects/jquery-lighttip/
@@ -9,8 +9,9 @@ http://jonathanwilsson.com/projects/jquery-lighttip/
 * Control the distance between the mouse pointer and LightTip.
 * Delay the viewing and hiding of LightTip.
 * Lock the position of LightTip or let it follow the mouse.
+* No CSS styles enforced, you're 100% in charge.
 * Supports HTML content in LightTip.
-* Tiny, 588 bytes (< 1kB) minified and gzipped.
+* Tiny, 598 bytes (< 1kB) minified and gzipped.
 * Trigger on different events, such as hover or focus
 
 ### Options
@@ -19,7 +20,7 @@ http://jonathanwilsson.com/projects/jquery-lighttip/
 * content (Default "") string A string which can contain HTML and which will be used in LightTip. Will override the "attribute" and "selector" options.
 * delayIn (Default 0) int Number of miliseconds before LightTip is shown.
 * delayOut (Default 0) int Number of miliseconds before LightTip is hidden.
-* lockPosition (Default false) boolean Whether to lock the position of LightTip. Not used if "trigger" is "hover".
+* lockPosition (Default false) boolean Whether to lock the position of LightTip. Not used if "trigger" is "focus".
 * offsetX (Default 10) integer X-offset from the mouse pointer.
 * offsetY (Default 10) integer Y-offset from the mouse pointer.
 * selector (Default "") string Any valid jQuery selector. The matched element's HTML will be used in LightTip. Will override the "attribute" option.
@@ -32,6 +33,10 @@ Minimum required jQuery version is 1.3.0.
 Free to use and abuse under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
 ## Changelog
+### 1.1.2
+* Added the "position:absolute;" declaration to the JavaScript again to make the setup of LightTip easier.
+* Some code cleanup.
+
 ### 1.1.1
 * Added the "trigger" option to allow for control over the triggering event.
 * Fixed a bug where a "title" attribute was always needed on the element which LightTip were bound to.
@@ -79,4 +84,4 @@ Free to use and abuse under the [MIT license](http://www.opensource.org/licenses
 * Initial release.
 
 ## Copyright
-Copyright 2011-2012 Jonathan Wilsson.
+Copyright 2011 - 2012 Jonathan Wilsson.

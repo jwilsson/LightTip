@@ -1,9 +1,4 @@
-/* Bare minimum styles */
-.lighttip {
-    position:absolute;
-}
-
-/* These styles are just examples. LightTip can be styled in any way you want */
+/* No CSS is needed to use LightTip. You're free to style it any way you want. */
 .lighttip {
     background:#000;
     border-radius:5px;
@@ -14,7 +9,7 @@
 }
 
 /* Other styles */
-html, body {
+body {
     background:#fff;
     color:#333;
     font:12px/1.5 "Trebuchet MS", sans-serif;

@@ -1,4 +1,4 @@
-// jQuery LightTip 1.1.1 | Copyright 2012 Jonathan Wilsson
+// jQuery LightTip 1.1.2 | Copyright 2012 Jonathan Wilsson
 (function ($) {
 	$.fn.LightTip = function (options) {
 		var defaults = {
@@ -28,17 +28,15 @@
 
 			// Add the tooltip when the user hovers over the specified element
 			$this.bind(eventIn, function (e) {
-				var text = $this.attr(defaults.attribute), id = Math.ceil(Math.random() * 9998), left, top;
-
-				left = (eventIn === "focus" ? this.offsetLeft : e.pageX);
-				top = (eventIn === "focus" ? this.offsetTop : e.pageY);
+				var text = $this.attr(defaults.attribute),
+					id = Math.ceil(Math.random() * 9998),
+					left = (eventIn === "focus" ? this.offsetLeft : e.pageX),
+					top = (eventIn === "focus" ? this.offsetTop : e.pageY);
 
 				// See which value to use for the text
 				if (defaults.selector && !defaults.content) {
 					text = $(defaults.selector).html();
-				}
-
-				if (defaults.content) {
+				} else if (defaults.content) {
 					text = defaults.content;
 				}
 
@@ -47,7 +45,7 @@
 				}
 
 				// Set up the LightTip element
-				$lighttip = $("body").append('<div id="l-' + id + '" class="lighttip"></div>').find("#l-" + id).hide();
+				$lighttip = $("body").append('<div id="l-' + id + '" class="lighttip" />').find("#l-" + id).hide();
 
 				// Clear the title attribute temporarily
 				if ($this.attr("title")) {
@@ -58,6 +56,7 @@
 					// Show the tooltip
 					$lighttip.html(text).css({
 						left: left + defaults.offsetX,
+						position: "absolute",
 						top: top + defaults.offsetY
 					});
 
